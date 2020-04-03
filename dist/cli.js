@@ -97,7 +97,7 @@ class TSInit {
             // Git
             if (answers.git) {
                 logger_utils_1.default.showInfo('Configuring git...');
-                yield git_action_1.default.init();
+                yield git_action_1.default.init(answers.name, answers.email);
                 yield gitignore_template_1.default.generateFile();
                 yield readme_template_1.default.generateFile(answers.name);
                 yield git_action_1.default.add('.');

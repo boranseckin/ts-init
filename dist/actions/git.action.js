@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const child_process_1 = require("child_process");
 const logger_utils_1 = __importDefault(require("../utils/logger.utils"));
 class Git {
-    static init() {
+    static init(name, email) {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
                 child_process_1.exec('git init', (error) => {
@@ -24,6 +24,8 @@ class Git {
                         reject();
                     }
                     else {
+                        child_process_1.exec(`git config user.name "${name}"`);
+                        child_process_1.exec(`git config user.email "${email}"`);
                         resolve();
                     }
                 });
