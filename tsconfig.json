@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "es6",
+    "module": "commonjs",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "resolveJsonModule": true,
+
+    /* Strict Type-Checking Options */
+    "strict": true,
+    "noImplicitAny": true,
+    "alwaysStrict": true,
+
+    /* Module Resolution Options */
+    "baseUrl": "./",
+    "paths": { "*": [ "node_modules/*" ] },
+    "esModuleInterop": true,
+
+    /* Advanced Options */
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "src/**/*",
+  ],
+  "exclude": [
+    "node_modules",
+    ".vscode"
+  ]
+}
