@@ -25,7 +25,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/boranseckin/ts-init.git"
+    "url": "git://github.com/boranseckin/ts-init.git"
+  },
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com/"
   },
   "homepage": "https://github.com/boranseckin/ts-init",
   "nodemonConfig": {
