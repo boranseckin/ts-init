@@ -1,7 +1,7 @@
 {
-  "name": "ts-init",
+  "name": "@boranseckin/ts-init",
   "version": "1.0.0",
-  "description": "",
+  "description": "CLI for initializing a TypeScript project",
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint . --ext .ts",
@@ -22,6 +22,9 @@
   "keywords": [],
   "author": "Boran Seckin <me@boranseckin.com>",
   "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "nodemonConfig": {
     "ignore": [
       "**/*.test.ts",
