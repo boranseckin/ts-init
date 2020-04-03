@@ -10,6 +10,7 @@ class TSConfig {
         outDir: './dist',
         rootDir: './src',
         resolveJsonModule: true,
+        declaration: true,
         strict: true,
         noImplicitAny: true,
         alwaysStrict: true,
@@ -23,6 +24,7 @@ class TSConfig {
       ],
       exclude: [
         'node_modules',
+        'dist',
         '.vscode',
         'docs',
       ],

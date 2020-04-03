@@ -19,6 +19,7 @@ class Package {
         'start:watch': 'nodemon',
         create: 'npm run build && npm start',
         build: 'tsc',
+        prepublish: 'npm run build',
         pretest: 'npm run lint',
         test: 'echo \'Error: no test specified\' && exit 1',
         refresh: 'rm -rf ./node_modules ./package-lock.json && npm install',
