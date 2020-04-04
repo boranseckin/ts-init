@@ -1,22 +1,9 @@
-import npm from 'npm';
+import _ from 'lodash';
+import { exec } from 'child_process';
 
 import Logger from '../utils/logger.utils';
 
 class NPM {
-  static loadNPM(callback: Function): void {
-    npm.load({
-      loglevel: 'silent',
-    }, (loadError) => {
-      if (loadError) {
-        Logger.showError(loadError);
-        process.exit(1);
-      }
-      npm.commands.set(['progress', 'false'], () => {
-        callback(undefined);
-      });
-    });
-  }
-
   static async installPackages(packages: string[]): Promise<any> {
     return new Promise((resolve, reject) => {
       Logger.showInfo('Installing dependencies...');
@@ -27,25 +14,23 @@ class NPM {
 
       Logger.npmOutputStart();
 
-      this.loadNPM(() => {
-        npm.config.set('save-dev', false);
+      const insPackages: string = _.join(packages, ' ');
 
-        npm.config.save('./', () => {
-          npm.commands.install([...packages], (installError) => {
-            if (installError) {
-              Logger.showError(installError);
-              reject(installError);
-            }
+      exec(`npm install --save ${insPackages}`, (error, stdout) => {
+        if (error) {
+          Logger.showError(error);
+          reject();
+        } else {
+          console.log(stdout);
 
-            Logger.npmOutputEnd();
+          Logger.npmOutputEnd();
 
-            packages.forEach((pack: string) => {
-              Logger.showSuccess(pack);
-            });
-
-            resolve();
+          packages.forEach((pack: string) => {
+            Logger.showSuccess(pack);
           });
-        });
+
+          resolve();
+        }
       });
     });
   }
@@ -60,25 +45,23 @@ class NPM {
 
       Logger.npmOutputStart();
 
-      this.loadNPM(() => {
-        npm.config.set('save-dev', true);
+      const insPackages: string = _.join(packages, ' ');
 
-        npm.config.save('./', () => {
-          npm.commands.install([...packages], (installError) => {
-            if (installError) {
-              Logger.showError(installError);
-              reject(installError);
-            }
+      exec(`npm install --save-dev ${insPackages}`, (error, stdout) => {
+        if (error) {
+          Logger.showError(error);
+          reject();
+        } else {
+          console.log(stdout);
 
-            Logger.npmOutputEnd();
+          Logger.npmOutputEnd();
 
-            packages.forEach((pack: string) => {
-              Logger.showSuccess(pack);
-            });
-
-            resolve();
+          packages.forEach((pack: string) => {
+            Logger.showSuccess(pack);
           });
-        });
+
+          resolve();
+        }
       });
     });
   }

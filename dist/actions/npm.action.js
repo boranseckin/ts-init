@@ -12,22 +12,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const npm_1 = __importDefault(require("npm"));
+const lodash_1 = __importDefault(require("lodash"));
+const child_process_1 = require("child_process");
 const logger_utils_1 = __importDefault(require("../utils/logger.utils"));
 class NPM {
-    static loadNPM(callback) {
-        npm_1.default.load({
-            loglevel: 'silent',
-        }, (loadError) => {
-            if (loadError) {
-                logger_utils_1.default.showError(loadError);
-                process.exit(1);
-            }
-            npm_1.default.commands.set(['progress', 'false'], () => {
-                callback(undefined);
-            });
-        });
-    }
     static installPackages(packages) {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
@@ -36,21 +24,20 @@ class NPM {
                     logger_utils_1.default.showInstall(pack);
                 });
                 logger_utils_1.default.npmOutputStart();
-                this.loadNPM(() => {
-                    npm_1.default.config.set('save-dev', false);
-                    npm_1.default.config.save('./', () => {
-                        npm_1.default.commands.install([...packages], (installError) => {
-                            if (installError) {
-                                logger_utils_1.default.showError(installError);
-                                reject(installError);
-                            }
-                            logger_utils_1.default.npmOutputEnd();
-                            packages.forEach((pack) => {
-                                logger_utils_1.default.showSuccess(pack);
-                            });
-                            resolve();
+                const insPackages = lodash_1.default.join(packages, ' ');
+                child_process_1.exec(`npm install --save ${insPackages}`, (error, stdout) => {
+                    if (error) {
+                        logger_utils_1.default.showError(error);
+                        reject();
+                    }
+                    else {
+                        console.log(stdout);
+                        logger_utils_1.default.npmOutputEnd();
+                        packages.forEach((pack) => {
+                            logger_utils_1.default.showSuccess(pack);
                         });
-                    });
+                        resolve();
+                    }
                 });
             });
         });
@@ -63,21 +50,20 @@ class NPM {
                     logger_utils_1.default.showInstall(pack);
                 });
                 logger_utils_1.default.npmOutputStart();
-                this.loadNPM(() => {
-                    npm_1.default.config.set('save-dev', true);
-                    npm_1.default.config.save('./', () => {
-                        npm_1.default.commands.install([...packages], (installError) => {
-                            if (installError) {
-                                logger_utils_1.default.showError(installError);
-                                reject(installError);
-                            }
-                            logger_utils_1.default.npmOutputEnd();
-                            packages.forEach((pack) => {
-                                logger_utils_1.default.showSuccess(pack);
-                            });
-                            resolve();
+                const insPackages = lodash_1.default.join(packages, ' ');
+                child_process_1.exec(`npm install --save-dev ${insPackages}`, (error, stdout) => {
+                    if (error) {
+                        logger_utils_1.default.showError(error);
+                        reject();
+                    }
+                    else {
+                        console.log(stdout);
+                        logger_utils_1.default.npmOutputEnd();
+                        packages.forEach((pack) => {
+                            logger_utils_1.default.showSuccess(pack);
                         });
-                    });
+                        resolve();
+                    }
                 });
             });
         });
