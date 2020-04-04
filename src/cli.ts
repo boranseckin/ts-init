@@ -103,11 +103,11 @@ export default class TSInit {
     if (answers.git) {
       Logger.showInfo('Configuring git...');
 
-      await Git.init(answers.name, answers.email);
+      await Git.init();
       await GitIgnore.generateFile();
       await Readme.generateFile(answers.name);
       await Git.add('.');
-      await Git.commit('Initial commit');
+      await Git.commit(answers.name, answers.email, 'Initial commit');
     }
 
     // End

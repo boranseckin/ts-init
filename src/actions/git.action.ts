@@ -3,15 +3,13 @@ import { exec } from 'child_process';
 import Logger from '../utils/logger.utils';
 
 class Git {
-  static async init(name: string, email: string): Promise<void> {
+  static async init(): Promise<void> {
     return new Promise((resolve, reject) => {
       exec('git init', (error) => {
         if (error) {
           Logger.showError(error);
           reject();
         } else {
-          exec(`git config user.name "${name}"`);
-          exec(`git config user.email "${email}"`);
           resolve();
         }
       });
@@ -32,9 +30,9 @@ class Git {
     });
   }
 
-  static async commit(message: string): Promise<void> {
+  static async commit(name: string, email: string, message: string): Promise<void> {
     return new Promise((resolve, reject) => {
-      exec(`git commit -m '${message}'`, (error) => {
+      exec(`git commit --author="${name} <${email}>" -m "${message}"`, (error) => {
         if (error) {
           Logger.showError(error);
           reject();
