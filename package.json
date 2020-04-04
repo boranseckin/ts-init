@@ -1,6 +1,6 @@
 {
   "name": "@boranseckin/ts-init",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "CLI for initializing a TypeScript project",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
