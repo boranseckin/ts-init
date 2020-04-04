@@ -98,10 +98,11 @@ class TSInit {
             if (answers.git) {
                 logger_utils_1.default.showInfo('Configuring git...');
                 yield git_action_1.default.init();
+                yield git_action_1.default.config(answers.author, answers.email);
                 yield gitignore_template_1.default.generateFile();
                 yield readme_template_1.default.generateFile(answers.name);
                 yield git_action_1.default.add('.');
-                yield git_action_1.default.commit(answers.name, answers.email, 'Initial commit');
+                yield git_action_1.default.commit('Initial commit');
             }
             // End
             logger_utils_1.default.showEnd();

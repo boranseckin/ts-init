@@ -30,6 +30,30 @@ class Git {
             });
         });
     }
+    static config(name, email) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return new Promise((resolve, reject) => {
+                child_process_1.exec(`git config user.email "${email}"`, (emailError) => {
+                    if (emailError) {
+                        logger_utils_1.default.showError(emailError);
+                        reject();
+                    }
+                    else {
+                        child_process_1.exec(`git config user.name "${name}"`, (nameError) => {
+                            if (nameError) {
+                                logger_utils_1.default.showError(nameError);
+                                reject();
+                            }
+                            else {
+                                logger_utils_1.default.showSuccess('User configurations are made.');
+                                resolve();
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    }
     static add(files) {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
@@ -46,10 +70,10 @@ class Git {
             });
         });
     }
-    static commit(name, email, message) {
+    static commit(message) {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
-                child_process_1.exec(`git commit --author="${name} <${email}>" -m "${message}"`, (error) => {
+                child_process_1.exec(`git commit -m "${message}"`, (error) => {
                     if (error) {
                         logger_utils_1.default.showError(error);
                         reject();

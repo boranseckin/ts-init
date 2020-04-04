@@ -16,6 +16,27 @@ class Git {
     });
   }
 
+  static async config(name: string, email: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      exec(`git config user.email "${email}"`, (emailError) => {
+        if (emailError) {
+          Logger.showError(emailError);
+          reject();
+        } else {
+          exec(`git config user.name "${name}"`, (nameError) => {
+            if (nameError) {
+              Logger.showError(nameError);
+              reject();
+            } else {
+              Logger.showSuccess('User configurations are made.');
+              resolve();
+            }
+          });
+        }
+      });
+    });
+  }
+
   static async add(files: string): Promise<void> {
     return new Promise((resolve, reject) => {
       exec(`git add ${files}`, (error) => {
@@ -30,9 +51,9 @@ class Git {
     });
   }
 
-  static async commit(name: string, email: string, message: string): Promise<void> {
+  static async commit(message: string): Promise<void> {
     return new Promise((resolve, reject) => {
-      exec(`git commit --author="${name} <${email}>" -m "${message}"`, (error) => {
+      exec(`git commit -m "${message}"`, (error) => {
         if (error) {
           Logger.showError(error);
           reject();
