@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.LicenseValue = void 0;
 var LicenseValue;
 (function (LicenseValue) {
     LicenseValue["MIT"] = "MIT";
