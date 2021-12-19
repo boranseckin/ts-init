@@ -1,3 +1,10 @@
+export declare enum LicenseValue {
+    MIT = "MIT",
+    APACHE = "APACHE",
+    ISC = "ISC",
+    BSD2 = "BSD2",
+    GPL3 = "GPL3"
+}
 export interface Answer {
     name: string;
     author: string;
@@ -10,11 +17,4 @@ export interface Answer {
 export interface Choice {
     name: string;
     value: LicenseValue;
-}
-export declare enum LicenseValue {
-    MIT = "MIT",
-    APACHE = "APACHE",
-    ISC = "ISC",
-    BSD2 = "BSD2",
-    GPL3 = "GPL3"
 }
