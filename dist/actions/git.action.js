@@ -18,7 +18,7 @@ class Git {
     static init() {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
-                child_process_1.exec('git init', (error) => {
+                (0, child_process_1.exec)('git init', (error) => {
                     if (error) {
                         logger_utils_1.default.showError(error);
                         reject();
@@ -33,13 +33,13 @@ class Git {
     static config(name, email) {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
-                child_process_1.exec(`git config user.email "${email}"`, (emailError) => {
+                (0, child_process_1.exec)(`git config user.email "${email}"`, (emailError) => {
                     if (emailError) {
                         logger_utils_1.default.showError(emailError);
                         reject();
                     }
                     else {
-                        child_process_1.exec(`git config user.name "${name}"`, (nameError) => {
+                        (0, child_process_1.exec)(`git config user.name "${name}"`, (nameError) => {
                             if (nameError) {
                                 logger_utils_1.default.showError(nameError);
                                 reject();
@@ -57,7 +57,7 @@ class Git {
     static add(files) {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
-                child_process_1.exec(`git add ${files}`, (error) => {
+                (0, child_process_1.exec)(`git add ${files}`, (error) => {
                     if (error) {
                         logger_utils_1.default.showError(error);
                         reject();
@@ -73,7 +73,7 @@ class Git {
     static commit(message) {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
-                child_process_1.exec(`git commit -m "${message}"`, (error) => {
+                (0, child_process_1.exec)(`git commit -m "${message}"`, (error) => {
                     if (error) {
                         logger_utils_1.default.showError(error);
                         reject();

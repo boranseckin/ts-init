@@ -25,7 +25,7 @@ class NPM {
                 });
                 logger_utils_1.default.npmOutputStart();
                 const insPackages = lodash_1.default.join(packages, ' ');
-                child_process_1.exec(`npm install --save ${insPackages}`, (error, stdout) => {
+                (0, child_process_1.exec)(`npm install --save ${insPackages}`, (error, stdout) => {
                     if (error) {
                         logger_utils_1.default.showError(error);
                         reject();
@@ -51,7 +51,7 @@ class NPM {
                 });
                 logger_utils_1.default.npmOutputStart();
                 const insPackages = lodash_1.default.join(packages, ' ');
-                child_process_1.exec(`npm install --save-dev ${insPackages}`, (error, stdout) => {
+                (0, child_process_1.exec)(`npm install --save-dev ${insPackages}`, (error, stdout) => {
                     if (error) {
                         logger_utils_1.default.showError(error);
                         reject();

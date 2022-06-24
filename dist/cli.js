@@ -35,7 +35,7 @@ const git_action_1 = __importDefault(require("./actions/git.action"));
 class TSInit {
     static runCLI() {
         return __awaiter(this, void 0, void 0, function* () {
-            clear_1.default();
+            (0, clear_1.default)();
             // Greeting
             logger_utils_1.default.showTitle();
             // Argument parsing
@@ -47,13 +47,13 @@ class TSInit {
             if (commander_1.default.debug)
                 console.log(commander_1.default.opts());
             // Inquirer Questions
-            const generalAnswer = yield general_question_1.default();
-            const licenseAnswer = yield license_question_1.default();
-            const gitAnswer = yield git_question_1.default();
+            const generalAnswer = yield (0, general_question_1.default)();
+            const licenseAnswer = yield (0, license_question_1.default)();
+            const gitAnswer = yield (0, git_question_1.default)();
             let answers = lodash_1.default.merge(generalAnswer, licenseAnswer, gitAnswer);
             // Check if the folder already exists
             if (!checker_utils_1.default.startupCheck(answers.name)) {
-                const overwriteAnswer = yield overwrite_question_1.default();
+                const overwriteAnswer = yield (0, overwrite_question_1.default)();
                 answers = lodash_1.default.merge(answers, overwriteAnswer);
                 if (!overwriteAnswer.overwrite) {
                     logger_utils_1.default.showError('Aborted');
@@ -61,7 +61,7 @@ class TSInit {
                 }
                 yield clear_action_1.default.clearFolder(answers.name);
             }
-            const confirmAnswer = yield confirm_question_1.default(answers);
+            const confirmAnswer = yield (0, confirm_question_1.default)(answers);
             answers = lodash_1.default.merge(answers, confirmAnswer);
             if (!confirmAnswer.confirm) {
                 logger_utils_1.default.showError('Aborted');

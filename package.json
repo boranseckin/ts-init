@@ -23,7 +23,7 @@
     "dist/**/*"
   ],
   "keywords": [],
-  "author": "Boran Seckin <me@boranseckin.com>",
+  "author": "Boran Seckin <boran@boranseckin.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -62,7 +62,7 @@
     "@types/fs-extra": "^8.1.1",
     "@types/inquirer": "^6.5.0",
     "@types/lodash": "^4.14.159",
-    "@types/node": "^13.13.15",
+    "@types/node": "^18.0.0",
     "@types/npm": "^2.0.31",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
@@ -70,9 +70,9 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^16.1.0",
     "eslint-plugin-import": "^2.22.0",
-    "nodemon": "^2.0.4",
-    "ts-node": "^8.10.2",
-    "typedoc": "^0.17.8",
-    "typescript": "^3.9.7"
+    "nodemon": "^2.0.18",
+    "ts-node": "^10.8.1",
+    "typedoc": "^0.22.17",
+    "typescript": "^4.7.4"
   }
 }

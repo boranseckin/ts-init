@@ -5,7 +5,7 @@ import Logger from '../utils/logger.utils';
 
 class NPM {
   static async installPackages(packages: string[]): Promise<any> {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       Logger.showInfo('Installing dependencies...');
 
       packages.forEach((pack: string) => {
@@ -36,7 +36,7 @@ class NPM {
   }
 
   static async installDevPackages(packages: string[]): Promise<any> {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       Logger.showInfo('Installing dev dependencies...');
 
       packages.forEach((pack: string) => {
